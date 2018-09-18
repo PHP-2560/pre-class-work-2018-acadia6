@@ -27,20 +27,45 @@ mean(exp.draws.1)
 sd(exp.draws.1)
 
 2. Repeat, but change the rate to 0.2, 5, 7.3 and 10, storing the results in vectors called  `exp.draws.0.2`,  `exp.draws.5`,  `exp.draws.7.3` and  `exp.draws.10`. 
+
   exp.draws.0.2<-rexp(200, rate=0.2)
-  exp.draws.5 <- rexp(200, rate=5),
-  exp.draws.7.3 <-rexp(200, rate=7.3),
+  
+  exp.draws.5 <- rexp(200, rate=5)
+  
+  exp.draws.7.3 <-rexp(200, rate=7.3)
+  
   exp.draws.10<-rexp(200, rate=10)
 
 3. The function `plot()` is the generic function in R for the visual display of data. `hist()` is a function that takes in and bins data as a side effect. To use this function, we must first specify what we'd like to plot.
     a. Use the `hist()` function to produce a histogram of your standard exponential distribution. 
+    
+    hist(exp.draws.1)
+    
     b. Use `plot()` with this vector to display the random values from your standard distribution in order.
+    
+    plot(exp.draws.1)
+    
     c. Now, use `plot()` with two arguments -- any two of your other stored random value vectors -- to create a scatterplot of the two vectors against each other.
+    
+    plot(exp.draws.10, exp.draws.0.2)
 
 4. We'd now like to compare the properties of each of our vectors. Begin by creating a vector of the means of each of our five distributions in the order we created them and saving this to a variable name of your choice. Using this and other similar vectors, create the following scatterplots and explain in words what is going on:
     a. The five means versus the five rates used to generate the distribution.
+    
+    vectormeans<-c(mean(exp.draws.1),mean(exp.draws.0.2),  mean(exp.draws.5), mean(exp.draws.7.3), mean(exp.draws.10))
+    ratevector <-c(1, 0.2, 5, 7.3, 10)
+    plot(vectormeans, ratevector)
+    #explanation: 
+    
     b. The standard deviations versus the rates.
+    
+    vectorsd<-c(sd(exp.draws.1),sd(exp.draws.0.2),  sd(exp.draws.5), sd(exp.draws.7.3), sd(exp.draws.10))
+    plot(vectorsd, ratevector)
+    #explanation: similar to the plot of the means vs the rates, we can see that the rate and SD are 
+    
     c. The means versus the standard deviations.
+    plot(vectormeans, vectorsd)
+    #explanation: as the mean increases, so too does the standard deviation in a proportionate manner.
 
 For each plot, explain in words what's going on.
 
