@@ -71,10 +71,6 @@ sd(exp.draws.1)
     vectormeans<-c(mean(exp.draws.1),mean(exp.draws.0.2),  mean(exp.draws.5), mean(exp.draws.7.3), mean(exp.draws.10))
     ratevector <-c(1, 0.2, 5, 7.3, 10)
     plot(vectormeans, ratevector)
-<<<<<<< HEAD
-    
-=======
->>>>>>> 097baaa3ac3e3b7f140a854dd8dbfa55d8dd1511
     #explanation: the rates and the means of each vector are inversely proportional
     
     b. The standard deviations versus the rates.
