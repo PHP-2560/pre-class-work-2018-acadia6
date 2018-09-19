@@ -16,14 +16,13 @@ results in 10 exponentially distributed numbers with a rate \(\lambda=5\). If yo
 then this results in 10 exponentially distributed numbers with a rate \(\lambda=1\), this is also referred to as the "standard exponential distribution". 
 
 ### Part 1
-install.packages("dplyr")
-library("dplyr")
-
 1. Generate 200 random values from the standard exponential distribution and store them in a vector `exp.draws.1`.  Find the mean and standard deviation of `exp.draws.1`.
 
-INPUT
+
 exp.draws.1<- rexp(n=200)
+
 mean(exp.draws.1)
+
 sd(exp.draws.1)
 
 2. Repeat, but change the rate to 0.2, 5, 7.3 and 10, storing the results in vectors called  `exp.draws.0.2`,  `exp.draws.5`,  `exp.draws.7.3` and  `exp.draws.10`. 
@@ -55,15 +54,16 @@ sd(exp.draws.1)
     vectormeans<-c(mean(exp.draws.1),mean(exp.draws.0.2),  mean(exp.draws.5), mean(exp.draws.7.3), mean(exp.draws.10))
     ratevector <-c(1, 0.2, 5, 7.3, 10)
     plot(vectormeans, ratevector)
-    #explanation: 
+    #explanation: the rates and the means of each vector are inversely proportional
     
     b. The standard deviations versus the rates.
     
     vectorsd<-c(sd(exp.draws.1),sd(exp.draws.0.2),  sd(exp.draws.5), sd(exp.draws.7.3), sd(exp.draws.10))
     plot(vectorsd, ratevector)
-    #explanation: similar to the plot of the means vs the rates, we can see that the rate and SD are 
+    #explanation: similar to the plot of the means vs the rates, we can see that the rate and SD are inversely proportional
     
     c. The means versus the standard deviations.
+    
     plot(vectormeans, vectorsd)
     #explanation: as the mean increases, so too does the standard deviation in a proportionate manner.
 
