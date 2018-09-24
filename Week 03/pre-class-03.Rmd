@@ -1,6 +1,11 @@
 # pre-class
-
-
+```{r}
+#setup
+install.packages("gapminder")
+library(gapminder)
+library(dplyr)
+gapminder
+```
 Make sure you commit this often with meaningfull messages. 
 
 
@@ -9,27 +14,45 @@ Make sure you commit this often with meaningfull messages.
 
 We will work with the dataset called [gapminder](https://github.com/jennybc/gapminder), this is a cleaned up version from [Gapminder Data](http://www.gapminder.org/data/). Gapminder contains a lot of great data on all of the nations of the world. We first need to install the gapminder package in R. 
 
-```
-install.packages("gapminder")
-```
-
-
-
-```
-library(dplyr)
-library(gapminder)
-gapminder
-```
-
-
-
 ### Pre-Class Problems
 
 Use **dplyr** functions to address the following questions:
 
 1. How many unique countries are represented per continent?
+There are 142 countries overall. 2 countries in Oceania are represented, 30 in Europe, 33 in Asia, 25 in the Americas, and 52 in Africa.
+```{r}
+  uni_country_tbl<-gapminder%>%
+    distinct(country, continent)%>%
+   arrange(continent)
+  
+uni_country_tbl%>%
+  filter(continent=="Africa")
+uni_country_tbl%>%
+  filter(continent=="Americas")
+uni_country_tbl%>%
+  filter(continent=="Asia")
+uni_country_tbl%>%
+  filter(continent=="Europe")
+uni_country_tbl%>%
+  filter(continent=="Oceania")
+```
+  
 2. Which European nation had the lowest GDP per capita in 1997? 
+Albania had the lowest GDP per capita in 1997 at 3193.
+```{r}
+gapminder%>%
+    filter(continent=="Europe", year=="1997")%>%
+    arrange(gdpPercap)
+```
 3. According to the data available, what was the average life expectancy across each continent in the 1980s?
+Average life expectancy for Africa was 52.5 years, for Asia was 63.7 years, for the Americas was 67.2 years, for Europe was 73.2 years, and for Oceania was 74.8 years.
+```{r}
+gapminder %>%
+    filter(year>=1980 & year<=1989)%>%
+    group_by(continent)%>%
+    summarise(avglifeexp = mean(lifeExp))%>%
+    arrange(avglifeexp)
+```
 4. What 5 countries have the highest total GDP over all years combined?
 5. What countries and years had life expectancies of _at least_ 80 years? _N.b. only output the columns of interest: country, life expectancy and year (in that order)._
 6. What 10 countries have the strongest correlation (in either direction) between life expectancy and per capita GDP?
