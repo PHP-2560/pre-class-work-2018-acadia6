@@ -21,10 +21,11 @@ Use **dplyr** functions to address the following questions:
 1. How many unique countries are represented per continent?
 There are 142 countries overall. 2 countries in Oceania are represented, 30 in Europe, 33 in Asia, 25 in the Americas, and 52 in Africa.
 ```{r}
-  uni_country_tbl<-gapminder%>%
+    uni_country_tbl<-gapminder%>%
     distinct(country, continent)%>%
-   arrange(continent)
-  
+    arrange(continent)
+
+#filter the amount of observations by each continent 
 uni_country_tbl%>%
   filter(continent=="Africa")
 uni_country_tbl%>%
@@ -63,9 +64,83 @@ gapminder%>%
     arrange(desc(totalGDP))
 ```
 5. What countries and years had life expectancies of _at least_ 80 years? _N.b. only output the columns of interest: country, life expectancy and year (in that order)._
+These are the following countries and years:
+country          lifeExp  year
+   <fct>              <dbl> <int>
+ 1 Australia           80.4  2002
+ 2 Australia           81.2  2007
+ 3 Canada              80.7  2007
+ 4 France              80.7  2007
+ 5 Hong Kong, China    80    1997
+ 6 Hong Kong, China    81.5  2002
+ 7 Hong Kong, China    82.2  2007
+ 8 Iceland             80.5  2002
+ 9 Iceland             81.8  2007
+10 Israel              80.7  2007
+11 Italy               80.2  2002
+12 Italy               80.5  2007
+13 Japan               80.7  1997
+14 Japan               82    2002
+15 Japan               82.6  2007
+16 New Zealand         80.2  2007
+17 Norway              80.2  2007
+18 Spain               80.9  2007
+19 Sweden              80.0  2002
+20 Sweden              80.9  2007
+21 Switzerland         80.6  2002
+22 Switzerland         81.7  2007
+```{r}
+gapminder%>%
+  filter(lifeExp>=80)%>%
+  select(country, lifeExp, year)%>%
+  print(n=22)
+```
 
 6. What 10 countries have the strongest correlation (in either direction) between life expectancy and per capita GDP?
+France, Austria, Belgium, Norway, and Oman have the strongest correlation between life expectancy and per capita GDP.
+
+```{r}
+gapminder%>%
+    group_by(country)%>%
+    #since "strongest", need absolute value
+    summarize(corr = abs(cor(lifeExp, gdpPercap)))%>%
+    arrange(desc(corr))
+```
 7. Which combinations of continent (besides Asia) and year have the highest average population across all countries? _N.b. your output should include all results sorted by highest average population_. With what you already know, this one may stump you. See [this Q&A](http://stackoverflow.com/q/27207963/654296) for how to `ungroup` before `arrange`ing. This also [behaves differently in more recent versions of dplyr](https://github.com/hadley/dplyr/releases/tag/v0.5.0).
+The five highest combinations are all in the Americas in the years 2007, 2002, 1997, 1992, and 1987.
+ continent  year    avgpop
+   <fct>     <int>     <dbl>
+ 1 Americas   2007 35954847.
+ 2 Americas   2002 33990910.
+ 3 Americas   1997 31876016.
+ 4 Americas   1992 29570964.
+ 5 Americas   1987 27310159.
+```{r}
+gapminder%>%
+  group_by(continent, year)%>%
+  filter(continent != "Asia")%>%
+  summarise(avgpop=mean(pop))%>%
+  arrange(desc(avgpop))
+```
 8. Which three countries have had the most consistent population estimates (i.e. lowest standard deviation) across the years of available data? 
+These countries were Sao Tome and Principe, Iceland, and Montenegro.
+   country                 sdpop
+   <fct>                   <dbl>
+ 1 Sao Tome and Principe  45906.
+ 2 Iceland                48542.
+ 3 Montenegro             99738
+```{r}
+gapminder%>%
+  group_by(country)%>%
+  summarise(sdpop = sd(pop))%>%
+  arrange(sdpop)
+```
 9. Subset **gm** to only include observations from 1992 and store the results as **gm1992**. What kind of object is this?
+GM1992 is a list, with a tbl, tbl_df, and data.frame.
+```{r}
+gm1992<- gapminder%>%
+  filter(year==1992)
+  typeof(gm1992)
+  class(gm1992)
+```
 10. Which observations indicate that the population of a country has *decreased* from the previous year **and** the life expectancy has *increased* from the previous year? See [the vignette on window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html).
