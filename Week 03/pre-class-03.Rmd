@@ -144,3 +144,54 @@ gm1992<- gapminder%>%
   class(gm1992)
 ```
 10. Which observations indicate that the population of a country has *decreased* from the previous year **and** the life expectancy has *increased* from the previous year? See [the vignette on window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html).
+
+Here are the 36 observations for which this is true.
+
+ country                continent  year lifeExp      pop gdpPercap
+   <fct>                  <fct>     <int>   <dbl>    <int>     <dbl>
+ 1 Afghanistan            Asia       1982    39.9 12881816      978.
+ 2 Bosnia and Herzegovina Europe     1992    72.2  4256013     2547.
+ 3 Bosnia and Herzegovina Europe     1997    73.2  3607000     4766.
+ 4 Bulgaria               Europe     2002    72.1  7661799     7697.
+ 5 Bulgaria               Europe     2007    73.0  7322858    10681.
+ 6 Croatia                Europe     1997    73.7  4444595     9876.
+ 7 Czech Republic         Europe     1997    74.0 10300707    16049.
+ 8 Czech Republic         Europe     2002    75.5 10256295    17596.
+ 9 Czech Republic         Europe     2007    76.5 10228744    22833.
+10 Equatorial Guinea      Africa     1977    42.0   192675      959.
+11 Germany                Europe     1977    72.5 78160773    20513.
+12 Germany                Europe     1987    74.8 77718298    24639.
+13 Guinea-Bissau          Africa     1967    35.5   601287      716.
+14 Hungary                Europe     1987    69.6 10612740    12986.
+15 Hungary                Europe     1997    71.0 10244684    11713.
+16 Hungary                Europe     2002    72.6 10083313    14844.
+17 Hungary                Europe     2007    73.3  9956108    18009.
+18 Ireland                Europe     1957    68.9  2878220     5599.
+19 Ireland                Europe     1962    70.3  2830000     6632.
+20 Kuwait                 Asia       1992    75.2  1418095    34933.
+21 Lebanon                Asia       1982    67.0  3086876     7641.
+22 Montenegro             Europe     2007    74.5   684736     9254.
+23 Poland                 Europe     2002    74.7 38625976    12002.
+24 Poland                 Europe     2007    75.6 38518241    15390.
+25 Portugal               Europe     1972    69.3  8970450     9022.
+26 Romania                Europe     1997    69.7 22562458     7347.
+27 Romania                Europe     2002    71.3 22404337     7885.
+28 Romania                Europe     2007    72.5 22276056    10808.
+29 Rwanda                 Africa     1997    36.1  7212583      590.
+30 Serbia                 Europe     2002    73.2 10111559     7236.
+31 Slovenia               Europe     2002    76.7  2011497    20660.
+32 Slovenia               Europe     2007    77.9  2009245    25768.
+33 Switzerland            Europe     1977    75.4  6316424    26982.
+34 Trinidad and Tobago    Americas   1992    69.9  1183669     7371.
+35 Trinidad and Tobago    Americas   2007    69.8  1056608    18009.
+36 West Bank and Gaza     Asia       1972    56.5  1089572     3133.
+
+```{r}
+gapminder%>%
+  group_by(country)%>%
+  arrange(country, year)%>%
+  filter(pop<lag(pop) & lifeExp>lag(lifeExp))%>%
+  print(n=36)
+```
+  
+
