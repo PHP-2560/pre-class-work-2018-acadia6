@@ -73,3 +73,11 @@ for(i in 1:nrow(survey.clean)){
 survey.clean
 ```
 B. Now, again using a loop, add a new column to the dataframe called “invalid.answers” that indicates, for each participant, how many bad answers they gave.
+```{r}
+survey.clean$invalid.answers<-rep(NA, nrow(survey.clean))
+for(i in 1:nrow(survey.clean)){
+  badcount<-sum(is.na(survey.clean))
+  survey.clean$invalid.answers[i]<-badcount
+}
+survey.clean
+```
