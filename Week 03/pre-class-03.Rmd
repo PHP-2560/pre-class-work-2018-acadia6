@@ -16,6 +16,9 @@ We will work with the dataset called [gapminder](https://github.com/jennybc/gapm
 
 ### Pre-Class Problems
 
+Alexander Adia
+Completed: September 24, 2018
+
 Use **dplyr** functions to address the following questions:
 
 1. How many unique countries are represented per continent?
