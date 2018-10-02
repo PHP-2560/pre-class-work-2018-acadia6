@@ -76,8 +76,9 @@ B. Now, again using a loop, add a new column to the dataframe called “invalid.
 ```{r}
 survey.clean$invalid.answers<-rep(NA, nrow(survey.clean))
 for(i in 1:nrow(survey.clean)){
-  badcount<-sum(is.na(survey.clean))
-  survey.clean$invalid.answers[i]<-badcount
+  badcountperpart<-survey.clean[i, 1:ncol(survey.clean)-1]
+  missing<-is.na(badcountperpart)
+  survey.clean$invalid.answers[i]<-sum(missing)
 }
 survey.clean
 ```
