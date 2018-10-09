@@ -121,7 +121,15 @@ for(i in 1:ncol(WCGS.new)){
 }
 ```
 D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop
+```{r}
+for(i in 1:ncol(WCGS.new)){
+  mean_std<-mean(WCGS.new[,i])
+  sd_std<-sd(WCGS.new[,i])
+  print(mean_std)
+  print(sd_std)
+}
 
+```
 
 
 
