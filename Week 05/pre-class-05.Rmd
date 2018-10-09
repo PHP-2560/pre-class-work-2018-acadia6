@@ -99,11 +99,7 @@ bmi     Body Mass Index
 A. Create a function called standardize.me() that takes a numeric vector as an argument, and returns the standardized version of the vector. 
 ```{r}
 standardize.me<-function(x) {
-  new_vec<-x
-  for (i in 1:ncol(new_vec)){
-    new_vec[,i]<-(x[,i]-colMeans(x[i]))-sd(x[,i])
-  }
-  head(new_vec)
+
 }
 
 
@@ -117,10 +113,7 @@ head(WCGS.new)
 ```
 C. Using a loop and your new function, standardize all the variables WCGS.new dataset.
 ```{r}
-for(i in 1:ncol(WCGS.new)){
-  standardized_set<-standardize.me(WCGS.new[,i])
-  return(standardized_set)
-}
+standardize.me(wcgs)
 ```
 D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop
 ```{r}
