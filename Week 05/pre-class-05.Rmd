@@ -100,32 +100,30 @@ A. Create a function called standardize.me() that takes a numeric vector as an a
 ```{r}
 standardize.me<-function(x) {
   standardized<-(x - mean(x)) / sd(x)
-  head(x)
 }
-
-
 ```
 
 B. Assign all the numeric columns of the original WCGS dataset to a new dataset called WCGS.new.
 ```{r}
-library(purrr)
 WCGS.new<-wcgs[,map_lgl(wcgs, is.numeric)]
 ```
 C. Using a loop and your new function, standardize all the variables WCGS.new dataset.
 ```{r}
-for(i in 1:ncol(WCGS.new)){
-  standardized_set<-WCGS.new[,i]
-  new_set<-standardize.me(WCGS.new)
-  WCGS.new<-new_set
+for (i in 1:ncol(WCGS.new)) {
+  newvar <- WCGS.new[,i]
+  newvar2 <- standardize.me(newvar)
+  WCGS.new[,i] <- newvar2
 }
 ```
+
 D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop
 ```{r}
 for(i in 1:ncol(WCGS.new)){
-  mean_std<-mean(WCGS.new[,i])
-  sd_std<-sd(WCGS.new[,i])
- print(paste("mean of col", i, "is", mean(WCGS.new[,i])))
- 
+  vector<-WCGS.new[,i]
+  mean<-mean(vector)
+  sd<-sd(vector)
+  print(mean)
+  print(sd)
 }
 ```
 
