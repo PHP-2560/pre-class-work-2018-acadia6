@@ -133,20 +133,33 @@ for(i in 1:ncol(WCGS.new)){
 
 A. Using a loop, calculate the mean weight of the subjects separated by the type of CHD they have.
 ```{r}
-wcgs2<-data.frame("chd"=unique(wcgs$typchd69), "meanwt"=NA)
-for(i in 1:length(wcgs2)){
-  mean<-mean(wcgs[wcgs$typchd69=wcgs2[i],]$weight)
-  wcgs2$meanwt<-mean
+#sort by chd type
+wcgs2<-wcgs%>%
+  select(typchd69, weight)%>%
+  arrange(typchd69)
+
+#create a list
+weight<-list()
+weight$no<-wcgs2%>%  
+    filter(typchd69=="no CHD")%>%
+    select(weight)
+weight$MI<-wcgs2%>%
+  filter(typchd69=="MI or SD")%>%
+  select(weight)
+weight$silent<-wcgs2%>% 
+  filter(typchd69=="silent MI")%>%
+  select(weight)
+weight$ang<-wcgs2%>%
+  filter(typchd69=="angina")%>%
+  select(weight)
+
+for(i in 1:length(weight)){
+  mean<-lapply(weight[[i]], mean)
+  print(mean)
 }
 
 ```
-for(i in 1:nrow((wcgs2))){
-  
-  chd2<-wcgs2$chd[i]
-  wt<-mean(subset(wcgs, chd==chd2)$weight)
-  
-  wcgs2$meanwt[i]<-wt
-  print(wcgs2)
+
 B. Now do the same thing, but now don’t use a loop
 ```{r}
 wcgs%>%
