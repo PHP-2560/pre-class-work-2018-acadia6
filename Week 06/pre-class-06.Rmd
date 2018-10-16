@@ -31,14 +31,22 @@ delete_last <- function(x) {
 f2(1)
 x<-c(1,2,3,4,5)
 f2(x)
-f3 <- function(x, y) {
+
+#this function takes y and repeats it for each observation in x.
+repeat_value<- function(x, y) {
   rep(y, length.out = length(x))
 }
+
+#testing f3
+f3(x, 9)
+f3(9, x)
 ```
 
 2. Compare and contrast rnorm() and MASS::mvrnorm(). How could you make them more consistent?
-
-
+```{r}
+rnorm
+MASS::mvrnorm
+```
 3. Use `lapply()` and an anonymous function to find the coefficient of variation (the standard deviation divided by the mean) for all columns in the mtcars dataset. 
 
 4. Use vapply() to:
