@@ -46,9 +46,13 @@ f3(9, x)
 ```{r}
 rnorm
 MASS::mvrnorm
+
+#rnorm takes the arguments n, mean, and SD, while mass::mvnorm takes n, mean, and variance rather than SD. We could realign the arguments such that both take SD, for example.
 ```
 3. Use `lapply()` and an anonymous function to find the coefficient of variation (the standard deviation divided by the mean) for all columns in the mtcars dataset. 
+```{r}
 
+```
 4. Use vapply() to:
     a. Compute the standard deviation of every column in a numeric data frame.
     b. Compute the standard deviation of every numeric column in a mixed data frame. (Hint: you’ll need to use vapply() twice.)
