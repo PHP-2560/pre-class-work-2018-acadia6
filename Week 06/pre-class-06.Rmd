@@ -51,7 +51,8 @@ MASS::mvrnorm
 ```
 3. Use `lapply()` and an anonymous function to find the coefficient of variation (the standard deviation divided by the mean) for all columns in the mtcars dataset. 
 ```{r}
-
+q3<-lapply(mtcars, function(x) sd(x)/mean(x))
+q3
 ```
 4. Use vapply() to:
     a. Compute the standard deviation of every column in a numeric data frame.
