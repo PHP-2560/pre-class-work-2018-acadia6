@@ -12,14 +12,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. Read the source code for each of the following three functions, puzzle out what they do, and then brainstorm better names.
 
-```
-f1 <- function(string, prefix) {
+```{r}
+#this function takes a string and checks whether or not the prefix (the second argument) exists. It starts at position 1 and checks if the characters in the string match those in the prefix. 
+check_if_prefix()<- function(string, prefix) {
   substr(string, 1, nchar(prefix)) == prefix
 }
-f2 <- function(x) {
+
+#test f1
+f1("yeet", "ye")
+f1("yeet", "yo")
+
+#this function deletes the last observation in a given x; it returns null if there is only one observation since then x would be empty
+delete_last <- function(x) {
   if (length(x) <= 1) return(NULL)
   x[-length(x)]
 }
+#testing f2
+f2(1)
+x<-c(1,2,3,4,5)
+f2(x)
 f3 <- function(x, y) {
   rep(y, length.out = length(x))
 }
