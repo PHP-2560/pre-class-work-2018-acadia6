@@ -56,7 +56,8 @@ for(i in 1:hands){
 }
 
 #test
-gamble_sim(1000, 100, 5000)
+gamble_sim(1000, 100, .5)
+
 ```
  
     a. the probability that you have "busted" (lost all your money) by the time you have placed your one hundredth bet. 
