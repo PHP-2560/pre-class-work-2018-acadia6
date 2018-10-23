@@ -87,14 +87,20 @@ markov_func<-function(cash, bet, prob){
     if(roll<p)
     {
       cash<-cash+bet
-      probability<-probability+1
+      probability<-probability+.01
     } else{
       cash<-cash-bet
       #reset to initial
       probability<-prob
     }
   }
-  hand<-hand
+  hand<-hand+1
+  if(hand==100000){
+    break
+  }
+  if(cash<bet){
+    break
+  }
 }
 
 ```
