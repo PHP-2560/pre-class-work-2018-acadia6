@@ -31,9 +31,24 @@ With this project we will simulate a famoues probability problem. This will not 
 
  1. **Gambler's Ruin**: Suppose you have a bankroll of $1000 and make bets of $100 on a fair game. By simulating the outcome directly for at most 5000 iterations of the game (or hands), estimate:
 ```{r}
-gamble_sim<-function(cash, bet, hands){
+#code first the function
+gamble_sim<-function(cash, bet, prob){
   newcash<-cash
-  win<-rbinom(hands, 1, 0.5)
+  while(cash>0){
+    winning<-runif(1)
+    if(winning<=prob){
+      countcash<-newcash+bet
+      newcash<-countcash
+    } else {
+      
+    }
+      
+  
+  }
+    
+#then do a set of hands    
+
+    
   if(win==1){
     poscounter<-newcash+bet
     newcash<-poscounter
