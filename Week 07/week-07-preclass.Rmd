@@ -33,7 +33,7 @@ With this project we will simulate a famoues probability problem. This will not 
 ```{r}
 gamble_sim<-function(cash, bet, hands){
   newcash<-cash
-  #need code to simulate the game
+  win<-rbinom(hands, 1, 0.5)
   if(win==1){
     poscounter<-newcash+bet
     newcash<-poscounter
@@ -41,8 +41,12 @@ gamble_sim<-function(cash, bet, hands){
     negcounter<-newcash-best
     newcash<-negcounter
   }
+  print(newcash)
 }
  
+rbinom(5000, 1, .5)
+#test
+gamble_sim(1000, 100, 5000)
 ```
  
     a. the probability that you have "busted" (lost all your money) by the time you have placed your one hundredth bet. 
