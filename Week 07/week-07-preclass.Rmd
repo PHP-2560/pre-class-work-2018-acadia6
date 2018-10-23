@@ -33,33 +33,21 @@ With this project we will simulate a famoues probability problem. This will not 
 ```{r}
 #code first the function
 gamble_sim<-function(cash, bet, prob){
-  newcash<-cash
   while(cash>0){
     winning<-runif(1)
     if(winning<=prob){
-      countcash<-newcash+bet
-      newcash<-countcash
+      cash<-cash+bet
     } else {
-      
+      cash<-cash-bet
     }
-      
-  
+    if(cash<bet){
+      break
+    }
   }
-    
+}
 #then do a set of hands    
 
-    
-  if(win==1){
-    poscounter<-newcash+bet
-    newcash<-poscounter
-  } else if (win==0){
-    negcounter<-newcash-best
-    newcash<-negcounter
-  }
-  print(newcash)
-}
- 
-rbinom(5000, 1, .5)
+
 #test
 gamble_sim(1000, 100, 5000)
 ```
