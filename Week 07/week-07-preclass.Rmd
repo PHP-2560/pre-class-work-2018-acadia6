@@ -36,6 +36,8 @@ With this project we will simulate a famoues probability problem. This will not 
 set.seed(100596)
 #need a gamble function
 gamble_sim<-function(cash, bet, prob){
+  hand<-0
+  #demonstrates that you need to have cash to run
   while(cash>0){
     winning<-runif(1)
     if(winning<=prob){
@@ -43,10 +45,15 @@ gamble_sim<-function(cash, bet, prob){
     } else {
       cash<-cash-bet
     }
+    hand<-hand+1
+    if(hand==5000){
+      break
+    }
+    #breaks when insufficient cash to make bet
     if(cash<bet){
       break
     }
-  }
+  } 
 }
 #then do a set of hands    
 hands<-5000
@@ -67,9 +74,30 @@ gamble_sim(1000, 100, .5)
     e. the mean and variance of your bankroll after 500 hands (including busts).
  
 Note: you *must* stop playing if your player has gone bust. How will you handle this in the `for` loop?
-#if cash=0, break
+#if cash<bet, break
 
 2. **Markov Chains**. Suppose you have a game where the probability of winning on your first hand is 48%; each time you win, that probability goes up by one percentage point for the next game (to a maximum of 100%, where it must stay), and each time you lose, it goes back down to 48%. Assume you cannot go bust and that the size of your wager is a constant $100.
+```{r}
+markov_func<-function(cash, bet, prob){
+  #hand counter
+  hand<-0
+  probability<-prob
+  while(bet>0){
+    roll<-runif(1)
+    if(roll<p)
+    {
+      cash<-cash+bet
+      probability<-probability+1
+    } else{
+      cash<-cash-bet
+      #reset to initial
+      probability<-prob
+    }
+  }
+  hand<-hand
+}
+
+```
     a. Is this a fair game? Simulate one hundred thousand sequential hands to determine the size of your return. Then repeat this simulation 99 more times to get a range of values to calculate the expectation.
     b. Repeat this process but change the starting probability to a new value within 2% either way. Get the expected return after 100 repetitions. Keep exploring until you have a return value that is as fair as you can make it. Can you do this automatically?
     c. Repeat again, keeping the initial probability at 48%, but this time change the probability increment to a value different from 1%. Get the expected return after 100 repetitions. Keep changing this value until you have a return value that is as fair as you can make it. 
