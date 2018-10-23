@@ -33,6 +33,7 @@ With this project we will simulate a famoues probability problem. This will not 
  
 
 ```{r}
+set.seed(100596)
 #need a gamble function
 gamble_sim<-function(cash, bet, prob){
   while(cash>0){
