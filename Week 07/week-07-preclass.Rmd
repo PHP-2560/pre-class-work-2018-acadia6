@@ -77,9 +77,27 @@ print(probability)
 
 Probability is .324
 ```
-    b. the probability that you have busted by the time you have placed your five hundredth bet by simulating the outcome directly. 
+    b. the probability that you have busted by the time you have placed your five hundredth bet by simulating the outcome directly.
+```{r}
+trials<-length(iter)
+success<-length(which(iter<500))
+probability<-success/trials
+print(probability)
+
+probability is .661
+```
     c. the mean time you go bust, given that you go bust within the first 5000 hands.
+```{r}
+timetobust<-iter[which(iter<=5000)]
+print(mean(timetobust))
+
+mean time to bust is 1013.4 hands
+```
     d. the mean and variance of your bankroll after 100 hands (including busts).
+```{r}
+
+
+```
     e. the mean and variance of your bankroll after 500 hands (including busts).
  
 Note: you *must* stop playing if your player has gone bust. How will you handle this in the `for` loop?
