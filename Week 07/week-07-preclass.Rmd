@@ -70,7 +70,11 @@ for(i in 1:hands){
  
     a. the probability that you have "busted" (lost all your money) by the time you have placed your one hundredth bet. 
 ```{r}
-
+trials<-length(iter)
+success<-iter%>%
+  filter(iter<=100)
+probability<-success/trials
+print(probability)
 
 ```
     b. the probability that you have busted by the time you have placed your five hundredth bet by simulating the outcome directly. 
