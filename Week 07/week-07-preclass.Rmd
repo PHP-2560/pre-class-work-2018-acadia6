@@ -35,6 +35,7 @@ With this project we will simulate a famoues probability problem. This will not 
 ```{r}
 set.seed(100596)
 #need a gamble function
+
 gamble_sim<-function(cash, bet, prob){
   hand<-0
   #demonstrates that you need to have cash to run
@@ -53,21 +54,25 @@ gamble_sim<-function(cash, bet, prob){
     if(cash<bet){
       break
     }
-  } 
-}
-#then do a set of hands    
-hands<-5000
-for(i in 1:hands){
-  
-  
-}
 
-#test
-gamble_sim(1000, 100, .5)
+  } 
+  return(hand)
+}
+#then do a set of hands; not really sure what fair game means but gonna assume it's 50% chance  
+hands<-5000
+iter<-0
+for(i in 1:hands){
+  outcomevec<-gamble_sim(1000, 100, .5)
+  iter<-c(iter, outcomevec)
+}
 
 ```
  
     a. the probability that you have "busted" (lost all your money) by the time you have placed your one hundredth bet. 
+```{r}
+
+
+```
     b. the probability that you have busted by the time you have placed your five hundredth bet by simulating the outcome directly. 
     c. the mean time you go bust, given that you go bust within the first 5000 hands.
     d. the mean and variance of your bankroll after 100 hands (including busts).
