@@ -47,11 +47,16 @@ sector_names
 ```
 4. Extract all of the “3 Month % Change” values from the “Stock Sectors” table.
 ```{r}
-threemonthchange<-html_nodes(webpage, )
+threemonthchange<-html_nodes(webpage, "div[id*='sector'] [class$='ChangePct']")
 threemonthchangevalues<-html_text(threemonthchange)
 threemonthchangevalues
 ```
 5. Extract the table “What’s Moving” (top middle of the web page) into a data-frame.
+```{r}
+tablevals<-html_nodes(webpage, "div table")
+moving_table<-html_table(tablevals[[1]])
+moving_table
+```
 6. Re-construct all of the links from the first column of the “What’s Moving” table.
 Hint: the base URL is “https://money.cnn.com”
 7. Extract the titles under the “Latest News” section (bottom middle of the web page.)
