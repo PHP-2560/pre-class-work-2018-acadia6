@@ -17,7 +17,11 @@ options(scipen = 3, digits = 3)
 
 ```
 
-
+```{r}
+httr_data<-GET("https://money.cnn.com/data/us_markets/")
+httr_data
+headers(httr_data)
+```
 
 ## Exercises
 
@@ -25,6 +29,7 @@ options(scipen = 3, digits = 3)
 
 ```{r}
 webpage<-read_html("https://money.cnn.com/data/us_markets/")
+
 ```
 2. Get the session details (status, type, size) of the above mentioned URL.
 ```{r}
@@ -42,8 +47,9 @@ sector_names
 ```
 4. Extract all of the “3 Month % Change” values from the “Stock Sectors” table.
 ```{r}
-3monthchange<-html_nodes
-3monthchangevalues<-html_name
+threemonthchange<-html_nodes(webpage, )
+threemonthchangevalues<-html_text(threemonthchange)
+threemonthchangevalues
 ```
 5. Extract the table “What’s Moving” (top middle of the web page) into a data-frame.
 6. Re-construct all of the links from the first column of the “What’s Moving” table.
