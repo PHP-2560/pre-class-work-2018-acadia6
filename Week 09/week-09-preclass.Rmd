@@ -34,7 +34,9 @@ session_details
 ```
 3. Extract all of the sector names from the “Stock Sectors” table (bottom left of the web page.)
 ```{r}
-sec_names<-
+sectors<-html_nodes(webpage, "sectors")
+sector_names<-html_name(sectors)
+sector_names
 ```
 4. Extract all of the “3 Month % Change” values from the “Stock Sectors” table.
 5. Extract the table “What’s Moving” (top middle of the web page) into a data-frame.
