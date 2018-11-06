@@ -34,7 +34,7 @@ session_details
 ```
 3. Extract all of the sector names from the “Stock Sectors” table (bottom left of the web page.)
 ```{r}
-sectors<-html_nodes(webpage, "sectors")
+sectors<-html_nodes(webpage, "a href*='sectors'")
 sector_names<-html_name(sectors)
 sector_names
 ```
