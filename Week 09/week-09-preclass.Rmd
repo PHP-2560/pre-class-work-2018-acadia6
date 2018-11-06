@@ -28,10 +28,14 @@ webpage<-read_html("https://money.cnn.com/data/us_markets/")
 ```
 2. Get the session details (status, type, size) of the above mentioned URL.
 ```{r}
-
+session_details<-html_session("https://money.cnn.com/data/us_markets/")
+session_details
 
 ```
 3. Extract all of the sector names from the “Stock Sectors” table (bottom left of the web page.)
+```{r}
+sec_names<-
+```
 4. Extract all of the “3 Month % Change” values from the “Stock Sectors” table.
 5. Extract the table “What’s Moving” (top middle of the web page) into a data-frame.
 6. Re-construct all of the links from the first column of the “What’s Moving” table.
