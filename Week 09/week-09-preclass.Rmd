@@ -60,12 +60,13 @@ moving_table
 6. Re-construct all of the links from the first column of the “What’s Moving” table.
 Hint: the base URL is “https://money.cnn.com”
 ```{r}
-
+base<-"https://money.cnn.com"
 link<-webpage%>%
     html_nodes("td .wsod_symbol")%>%
-    html_attr()
+    html_attr("href")
    
-link_together<-paste(“https://money.cnn.com”, link)
+link_together<-paste(base, link)
+link_together
 ```
 7. Extract the titles under the “Latest News” section (bottom middle of the web page.)
 ```{r}
@@ -86,4 +87,16 @@ webpage_str
 Extract the attributes (and their values) of the HTML element that holds the timestamp underneath the “What’s Moving” table.
 9. Extract the values of the blue percentage-bars from the “Trending Tickers” table (bottom right of the web page.)
 Hint: in this case, the values are stored under the “class” attribute.
+```{r}
+trending_tickers<-webpage %>% 
+  html_nodes(".scale div") %>% 
+  html_attr("class")
+trending_tickers
+```
 10. Get the links of all of the “svg” images on the web page.
+```{r}
+svg_links<-webpage %>%
+  html_nodes("img[src$='svg']")%>%
+  html_attr("src")
+svg_links
+```
