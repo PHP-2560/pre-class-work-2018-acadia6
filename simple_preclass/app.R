@@ -18,12 +18,12 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-        ?numericInput(inputId="scoreInput", label="Z Score", value=0)
+        numericInput(inputId="scoreInput", label="Z Score", value=0)
       ),
       
       # Show a plot of the generated distribution
       mainPanel( "P value",
-         return("PVal")
+         textOutput("PVal")
       )
    )
 )
@@ -31,7 +31,9 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
    
-   output$PVal<-2*pnorm(-abs(input$scoreInput))
+   output$PVal<-renderText(
+     {2*pnorm(-abs(input$scoreInput))
+     })
 }
 
 # Run the application 
