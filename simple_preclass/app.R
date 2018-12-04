@@ -18,7 +18,7 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-        numericInput("scoreInput", "Z Score")
+        ?numericInput(inputId="scoreInput", label="Z Score", value=0)
       ),
       
       # Show a plot of the generated distribution
