@@ -10,10 +10,10 @@
 library(shiny)
 
 # Define UI for application that draws a histogram
-ui <- fluidPage(
+ui <- fluidPage("Z score", "pvalue"
    
    # Application title
-   titlePanel("Old Faithful Geyser Data"),
+   titlePanel("Simple Shiny App"),
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
